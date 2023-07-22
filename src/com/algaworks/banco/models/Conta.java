@@ -2,7 +2,7 @@ package com.algaworks.banco.models;
 
 import java.util.Objects;
 
-public class Conta {
+public abstract class Conta {
 
 //      Atributos da conta (Propriedades)
 //      Encapsulamento - modificador usado para definir o nivel acesso que se pode ter na variável, método, etc.
