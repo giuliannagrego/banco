@@ -1,9 +1,6 @@
 package com.algaworks.banco.app;
 
-import com.algaworks.banco.models.Conta;
-import com.algaworks.banco.models.ContaEspecial;
-import com.algaworks.banco.models.ContaInvestimento;
-import com.algaworks.banco.models.Pessoa;
+import com.algaworks.banco.models.*;
 
 public class Principal {
 
@@ -16,6 +13,8 @@ public class Principal {
         Pessoa titular2 = new Pessoa();
         titular2.setNome("Sicrana dos Santos");
         titular2.setDocumento("96453687523");
+
+        CaixaEletronico caixaEletronico = new CaixaEletronico();
 
         ContaInvestimento minhaConta = new ContaInvestimento(titular1, 1234,1234);
 //      minhaConta.titular = titular1;
@@ -45,11 +44,14 @@ public class Principal {
         suaConta.sacar(63_000);
 
 
-        System.out.println("Títular: " + minhaConta.getTitular().getNome());
-        System.out.println("Saldo: " + minhaConta.getSaldo());
+//      System.out.println("Títular: " + minhaConta.getTitular().getNome());
+//      System.out.println("Saldo: " + minhaConta.getSaldo());
 
-        System.out.println("Títular: " + suaConta.getTitular().getNome());
-        System.out.println("Saldo: " + suaConta.getSaldo());
+//      System.out.println("Títular: " + suaConta.getTitular().getNome());
+//      System.out.println("Saldo: " + suaConta.getSaldo());
 
+        caixaEletronico.imprimirSaldo(minhaConta);
+        System.out.println();
+        caixaEletronico.imprimirSaldo(suaConta);
     }
 }

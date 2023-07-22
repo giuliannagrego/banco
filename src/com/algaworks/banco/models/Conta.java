@@ -15,7 +15,6 @@ public class Conta {
         }
 
         public Conta(Pessoa titular, int agencia, int numero){
-
                 Objects.requireNonNull(titular);
 
                 this.titular = titular;
@@ -24,14 +23,12 @@ public class Conta {
         }
 
         public void depositar(double valor) {
-
                 if (valor <= 0) {
                         throw new IllegalStateException("Valor deve ser maior que 0");
                 }
                 saldo = saldo + valor;
         }
         public void sacar(double valor) {
-
                 if (valor <= 0) {
                         throw new IllegalStateException("Valor deve ser maior que 0");
                 }
