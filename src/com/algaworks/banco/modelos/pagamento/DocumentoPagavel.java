@@ -8,4 +8,12 @@ public interface DocumentoPagavel {
     boolean estaPago();
     void quitarPagamento();
 
+
+//    Evitar o uso do default (pode ser considerado uma má prática)
+    default void imprimirRecibo() {
+        System.out.println("RECIBO:");
+        System.out.println("Valor total: " + getValorTotal());
+        System.out.println("Pago: " + estaPago());
+    }
+
 }

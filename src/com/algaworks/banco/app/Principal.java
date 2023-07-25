@@ -4,6 +4,7 @@ import com.algaworks.banco.modelos.*;
 import com.algaworks.banco.modelos.atm.CaixaEletronico;
 import com.algaworks.banco.modelos.pagamento.Boleto;
 import com.algaworks.banco.modelos.pagamento.DocumentoPagavel;
+import com.algaworks.banco.modelos.pagamento.Holerite;
 
 public class Principal {
 
@@ -64,7 +65,15 @@ public class Principal {
         System.out.println("Boleto pago: " + boletoEscola.estaPago()); // false
         caixaEletronico.pagar(boletoEscola, minhaConta);
         System.out.println("Boleto pago: " + boletoEscola.estaPago()); // true
+        caixaEletronico.estornarPagamento(boletoEscola, suaConta);
+        System.out.println("Boleto pago: " + boletoEscola.estaPago()); // false
 
+        System.out.println();
+        Holerite salarioFuncionario = new Holerite(titular1, 100, 220);
+        caixaEletronico.pagar(salarioFuncionario, minhaConta);
+        System.out.println("Salário pago: " + salarioFuncionario.estaPago()); // true
+
+        System.out.println();
         caixaEletronico.imprimirSaldo(minhaConta);
         System.out.println();
         caixaEletronico.imprimirSaldo(suaConta);

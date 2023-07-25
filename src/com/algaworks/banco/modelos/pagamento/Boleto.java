@@ -9,7 +9,7 @@ import com.algaworks.banco.modelos.Pessoa;
 
             *Caso contrário a classe não compila*
 */
-public class Boleto implements DocumentoPagavel {
+public class Boleto implements DocumentoPagavel, DocumentoEstornavel {
 
     private Pessoa beneficiario;
     private double valor;
@@ -31,7 +31,12 @@ public class Boleto implements DocumentoPagavel {
     }
 
     @Override
+    public void estornarPagamento() {
+        pago = false;
+    }
+    @Override
     public void quitarPagamento() {
         pago = true;
     }
+
 }
