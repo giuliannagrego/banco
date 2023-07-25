@@ -2,6 +2,8 @@ package com.algaworks.banco.app;
 
 import com.algaworks.banco.modelos.*;
 import com.algaworks.banco.modelos.atm.CaixaEletronico;
+import com.algaworks.banco.modelos.pagamento.Boleto;
+import com.algaworks.banco.modelos.pagamento.DocumentoPagavel;
 
 public class Principal {
 
@@ -30,8 +32,9 @@ public class Principal {
 //      suaConta.saldo = 0;
 
         minhaConta.depositar(150_000);
-        suaConta.depositar(30_000);
         minhaConta.sacar(4_000);
+
+        suaConta.depositar(30_000);
         suaConta.sacar(7_000);
         suaConta.depositar(30_000);
 
@@ -43,15 +46,24 @@ public class Principal {
         minhaConta.creditarRendimentos(0.8);
         minhaConta.debitarTarifaMensal();
 
-        suaConta.sacar(63_000);
+        suaConta.sacar(60_000);
         suaConta.debitarTarifaMensal();
-
 
 //      System.out.println("Títular: " + minhaConta.getTitular().getNome());
 //      System.out.println("Saldo: " + minhaConta.getSaldo());
 
 //      System.out.println("Títular: " + suaConta.getTitular().getNome());
 //      System.out.println("Saldo: " + suaConta.getSaldo());
+
+
+/*      Usando o princípio do polimorfismo, o Boleto -É UM- DocumentoPagavel.
+        Possibilitando o vínculo entre ambos.
+*/
+//      DocumentoPagavel boletoEscola = new Boleto(titular2, 2_000); OU
+        Boleto boletoEscola = new Boleto(titular2, 2_000);
+        System.out.println("Boleto pago: " + boletoEscola.estaPago()); // false
+        caixaEletronico.pagar(boletoEscola, minhaConta);
+        System.out.println("Boleto pago: " + boletoEscola.estaPago()); // true
 
         caixaEletronico.imprimirSaldo(minhaConta);
         System.out.println();

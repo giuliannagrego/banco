@@ -13,6 +13,11 @@ public class CaixaEletronico {
     }
 
     public void pagar(DocumentoPagavel documento,Conta conta) {
+        if (documento.estaPago()) {
+            throw new IllegalStateException("Documento já está pago.");
+        }
+
+        conta.sacar(documento.getValorTotal());
         documento.quitarPagamento();
 
     }
