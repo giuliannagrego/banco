@@ -1,4 +1,4 @@
-package com.algaworks.banco.models;
+package com.algaworks.banco.modelos;
 
 public class ContaEspecial extends Conta {
     private double valorLimite;
@@ -6,6 +6,11 @@ public class ContaEspecial extends Conta {
     public ContaEspecial(Pessoa titular, int agencia, int numero, double valorLimite) {
         super(titular, agencia, numero);
         this.valorLimite = valorLimite;
+    }
+
+    @Override
+    public void debitarTarifaMensal() {
+        sacar(20);
     }
 
     @Override

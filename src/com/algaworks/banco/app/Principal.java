@@ -1,6 +1,7 @@
 package com.algaworks.banco.app;
 
-import com.algaworks.banco.models.*;
+import com.algaworks.banco.modelos.*;
+import com.algaworks.banco.modelos.atm.CaixaEletronico;
 
 public class Principal {
 
@@ -40,8 +41,10 @@ public class Principal {
 //      minhaConta.sacar(1_000, 10);
 
         minhaConta.creditarRendimentos(0.8);
+        minhaConta.debitarTarifaMensal();
 
         suaConta.sacar(63_000);
+        suaConta.debitarTarifaMensal();
 
 
 //      System.out.println("Títular: " + minhaConta.getTitular().getNome());

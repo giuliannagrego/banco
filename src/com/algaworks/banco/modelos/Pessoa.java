@@ -1,4 +1,4 @@
-package com.algaworks.banco.models;
+package com.algaworks.banco.modelos;
 
 public class Pessoa {
 
