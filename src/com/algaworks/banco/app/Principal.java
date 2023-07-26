@@ -63,15 +63,23 @@ public class Principal {
 //      DocumentoPagavel boletoEscola = new Boleto(titular2, 2_000); OU
         Boleto boletoEscola = new Boleto(titular2, 2_000);
         System.out.println("Boleto pago: " + boletoEscola.estaPago()); // false
+        System.out.println();
+
         caixaEletronico.pagar(boletoEscola, minhaConta);
         System.out.println("Boleto pago: " + boletoEscola.estaPago()); // true
+        boletoEscola.imprimirRecibo();
+        System.out.println();
+
         caixaEletronico.estornarPagamento(boletoEscola, suaConta);
         System.out.println("Boleto pago: " + boletoEscola.estaPago()); // false
-
+        boletoEscola.imprimirRecibo();
         System.out.println();
+
         Holerite salarioFuncionario = new Holerite(titular1, 100, 220);
         caixaEletronico.pagar(salarioFuncionario, minhaConta);
         System.out.println("Salário pago: " + salarioFuncionario.estaPago()); // true
+        salarioFuncionario.imprimirRecibo();
+
 
         System.out.println();
         caixaEletronico.imprimirSaldo(minhaConta);
