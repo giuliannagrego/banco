@@ -1,5 +1,10 @@
 package com.algaworks.banco.modelos;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
+import static java.math.RoundingMode.HALF_EVEN;
+
 /*  Classe ContaInvestimento herdada da Classe Conta:
     Usa-se o -> extends Conta
     Quando uma Classe é herdada, sempre que for instanciado algum objeto do tipo ContaInvestimento,
@@ -21,15 +26,16 @@ public class ContaInvestimento extends Conta {
 
     @Override
     public void debitarTarifaMensal() {
-        if (getSaldo() < 10_000) {
-            sacar(30);
+        if (getSaldo().compareTo(new BigDecimal("10000")) < 0) {
+            sacar(new BigDecimal("30"));
         }
     }
 
-    public void creditarRendimentos(double percentualJuros) {
-        double valorRendimentos = getSaldo() * percentualJuros / 100;
+    public void creditarRendimentos(BigDecimal percentualJuros) {
+//        double valorRendimentos = getSaldo() * percentualJuros / 100;
+        BigDecimal valorRendimentos = getSaldo().multiply(percentualJuros)
+                .divide(new BigDecimal("100"), 2, RoundingMode.HALF_EVEN);
         depositar(valorRendimentos);
+//      *RoundingMode.HALF_EVEN -> Padrão de arredondamento bancário*
     }
-
-
 }

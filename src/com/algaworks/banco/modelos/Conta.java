@@ -1,5 +1,8 @@
 package com.algaworks.banco.modelos;
 
+import com.algaworks.banco.modelos.exceptions.SaldoInsuficienteException;
+
+import java.math.BigDecimal;
 import java.util.Objects;
 
 /*      Uma classe ABSTRATA(abstract) é uma classe que não deve ser instânciada
@@ -16,7 +19,7 @@ public abstract class Conta {
         private Pessoa titular;
         private int agencia;
         private int numero;
-        private double saldo;
+        private BigDecimal saldo = BigDecimal.ZERO;
 
         public Conta(){
         }
@@ -29,22 +32,22 @@ public abstract class Conta {
                 this.numero = numero;
         }
 
-        public void depositar(double valor) {
-                if (valor <= 0) {
+        public void depositar(BigDecimal valor) {
+                if (valor.compareTo(BigDecimal.ZERO) <= 0) {
                         throw new IllegalStateException("Valor deve ser maior que 0");
                 }
-                saldo = saldo + valor;
+                saldo = saldo.add(valor);
         }
-        public void sacar(double valor) {
-                if (valor <= 0) {
+        public void sacar(BigDecimal valor) {
+                if (valor.compareTo(BigDecimal.ZERO) <= 0) {
                         throw new IllegalStateException("Valor deve ser maior que 0");
                 }
 
-                if (getSaldoDisponivel() - valor < 0) {
-                        throw new IllegalStateException("Saldo insuficiente");
+                if (getSaldoDisponivel().subtract(valor).compareTo(BigDecimal.ZERO) <= 0) {
+                        throw new SaldoInsuficienteException("Saldo insuficiente");
                 }
 
-                saldo = saldo - valor;
+                saldo = saldo.subtract(valor);
         }
 /*      Exemplo de método abstrato:
         As subclasses que herdam a superclasse, serão obrigadas a implementar esse método abstrato
@@ -53,8 +56,8 @@ public abstract class Conta {
         public abstract void debitarTarifaMensal();
 
 //      Sobrecarga de método
-        void sacar(double valor, double taxaSaque) {
-                sacar(valor + taxaSaque);
+        void sacar(BigDecimal valor, BigDecimal taxaSaque) {
+                sacar(valor.add(taxaSaque));
         }
 
 //      Javabeans - Métodos Getters and Setters
@@ -74,11 +77,11 @@ public abstract class Conta {
                 return numero;
         }
 
-        public double getSaldo() {
+        public BigDecimal getSaldo() {
                 return saldo;
         }
 
-        public double getSaldoDisponivel() {
+        public BigDecimal getSaldoDisponivel() {
                 return getSaldo();
         }
 }
